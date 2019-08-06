@@ -1,1 +1,1 @@
-
+This directory contains my programming assignments for my CSE100(Advanced Data Structures) course at UCSD. Each of the three programming assignments were coded from scratch. Furthermore, each project incorporates the use of many different tree data structures, as well as tree search algorithms. Inside of each project you'll find a README explaining more details about the project, as well as commands to run it yourself. I hope you enjoy it!
