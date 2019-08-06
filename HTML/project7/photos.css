@@ -1,0 +1,19 @@
+img{
+    
+    width: 30%;
+    float: left;
+    /* the three images are 30 => 3*30 = 90. The remaining
+     * 10 percent of the image, we divide that by 6 (the number of margins
+     * and get 1.66.*/
+    margin: 1.66%;
+}
+
+h1{
+
+    margin-left: 1.66%;
+    font-size: 23px;
+    font-weight: 800;
+    font-family: 'Over the Rainbow', cursive;
+    border-bottom: 3px solid red;
+    width: 30%
+}

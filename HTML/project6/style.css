@@ -1,0 +1,32 @@
+h1{
+    text-align: center;
+}
+
+table{
+    margin: auto;
+}
+
+
+
+td{
+    width:100px;
+    height:100px;
+}
+
+
+.vertical {
+
+    /* Set the height and width */
+    
+    border-left: 1px solid blue;
+    border-right: 1px solid blue;
+
+}
+
+.horizontal {
+
+    border-bottom: 1px solid blue;
+    border-top: 1px solid blue;
+}
+
+
