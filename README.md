@@ -1,2 +1,2 @@
 # myProjects
-Projects of mine, including from my CSE100 (Advanced Data Structures) course where all projects were created by me from scratch. In addition, I have some HTML/CSS projects that I'm working on. I am continuously updating my repo, based on whichever projects I'm working on. 
+These projects include some HTML/CSS projects that I'm working on, as well as algorithm questions I've tackled from sources such as LeetCode and Cracking the Coding Interview. I am continuously updating my repo, based on whichever projects I'm working on. If you'd like to see my school projects, including projects done from scratch, from my Advanced Data Structures course (CSE100), please email me so I can send them privately. Thanks!
