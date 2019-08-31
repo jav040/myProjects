@@ -1,0 +1,39 @@
+  img{
+  width:300px;
+  height:200px;
+}
+
+
+table {
+    margin-left:auto; 
+    margin-right:auto;
+  }
+
+#wrapper3 {
+  display: inline-block;
+  position: relative;
+}
+
+.text3 {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: opacity .5s;
+  background: rgba(0, 0, 0, .5);
+  color: white;
+  margin: 0;
+  padding: 10px;
+}
+
+.hover {
+  display: block;
+}
+
+#wrapper3:hover .text3 {
+  opacity: 1;
+}
+
+
