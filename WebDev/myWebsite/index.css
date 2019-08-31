@@ -9,6 +9,8 @@ table {
     margin-right:auto;
   }
 
+
+/* THIRD HOVER */
 #wrapper3 {
   display: inline-block;
   position: relative;
@@ -28,11 +30,104 @@ table {
   padding: 10px;
 }
 
-.hover {
+.hover3 {
   display: block;
 }
 
 #wrapper3:hover .text3 {
+  opacity: 1;
+}
+
+
+
+/* FOURTH HOVER */
+#wrapper4 {
+  display: inline-block;
+  position: relative;
+}
+
+.text4 {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: opacity .5s;
+  background: rgba(0, 0, 0, .5);
+  color: white;
+  margin: 0;
+  padding: 10px;
+}
+
+.hover4 {
+  display: block;
+}
+
+#wrapper4:hover .text4 {
+  opacity: 1;
+}
+
+
+
+
+/* THIRD HOVER */
+
+#wrapper2 {
+  display: inline-block;
+  position: relative;
+}
+
+.text2 {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: opacity .5s;
+  background: rgba(0, 0, 0, .5);
+  color: white;
+  margin: 0;
+  padding: 10px;
+}
+
+.hover2 {
+  display: block;
+}
+
+#wrapper2:hover .text2 {
+  opacity: 1;
+}
+
+
+
+
+/* FOURTH HOVER */
+#wrapper1 {
+  display: inline-block;
+  position: relative;
+}
+
+.text1 {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: opacity .5s;
+  background: rgba(0, 0, 0, .5);
+  color: white;
+  margin: 0;
+  padding: 10px;
+}
+
+.hover1 {
+  display: block;
+}
+
+#wrapper1:hover .text1 {
   opacity: 1;
 }
 
