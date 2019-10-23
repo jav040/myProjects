@@ -4,7 +4,14 @@ var mongoose = require("mongoose");
 var campgroundSchema = new mongoose.Schema({
 	name: String,
 	image: String,
-	description: String
+	description: String,
+	comments: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref : "Comment" //Here should go the name of the model
+
+		}
+	]
 });
 
 //Now compile this into a model, so we can have a bunch of methods

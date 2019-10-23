@@ -20,7 +20,7 @@ var campgroundSchema = new mongoose.Schema({
 var Campground = mongoose.model("Campground", campgroundSchema);
 */
 
-
+/*
 Campground.create(
 	{	
 		name: "Salmon Creek", 
@@ -37,7 +37,7 @@ Campground.create(
 	}
 });
 
-
+*/
 
 app.set("view engine", "ejs");
 
