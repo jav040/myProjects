@@ -1,0 +1,17 @@
+{
+  "name": "project12",
+  "version": "1.0.0",
+  "description": "solution to first express exercise",
+  "main": "app.js",
+  "dependencies": {
+    "cat-me": "^1.0.3",
+    "express": "^4.17.1",
+    "faker": "^4.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jorge Vasquez",
+  "license": "ISC"
+}
