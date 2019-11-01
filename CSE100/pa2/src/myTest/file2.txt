@@ -1,0 +1,2 @@
+Now i am in the second file?
+and this is the second line of second file.
