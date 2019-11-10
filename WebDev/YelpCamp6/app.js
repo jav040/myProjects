@@ -38,7 +38,11 @@ passport.deserializeUser(User.deserializeUser());
 
 
 
+app.use(function(req, resp, next){ 
+	resp.locals.currentUser = req.user;
+	next();
 
+})
 
 
 
@@ -53,12 +57,13 @@ app.get("/", function(req, res){
 /*----------   INDEX	-------	*/
 app.get("/campgrounds", function(req, res){
 	// GET ALL CAMPGROUNDS FROM DB
+	console.log(req.user);
 	Campground.find({}, function(err, allCampgrounds){
 	if(err){
 		console.log(err);
 	}
 	else{
-		res.render("campgrounds/index", {campgrounds:allCampgrounds});
+		res.render("campgrounds/index", {campgrounds:allCampgrounds, currentUser: req.user });
 	}
    
    });
@@ -116,7 +121,7 @@ app.get("/campgrounds/:id", function(req, res){
 
 
 /*----------   COMMENT  	-------	*/
-app.get("/campgrounds/:id/comments/new", function(req, resp){
+app.get("/campgrounds/:id/comments/new", isLoggedIn ,function(req, resp){
 						//Find campground by ID
 					   Campground.findById(req.params.id, function(err, campground){
   if(err){console.log(err)}
@@ -126,7 +131,7 @@ app.get("/campgrounds/:id/comments/new", function(req, resp){
 					   );	
 })
 
-app.post("/campgrounds/:id/comments", function(req, resp){
+app.post("/campgrounds/:id/comments", isLoggedIn, function(req, resp){
 	//lookup campground by ID
 	Campground.findById(req.params.id, function(err, campground){
 		if(err){
@@ -185,6 +190,49 @@ app.post("/register", function(req, resp){
 
 	});
 });
+
+
+//Show the login form
+app.get("/login", function(req, resp){
+	resp.render("login");
+});
+
+//Handle the login logic
+// This logic presumes that the user exists already (i.e. has already registered)
+app.post("/login", passport.authenticate("local", 
+{successRedirect: "/campgrounds",
+ failureRedirect: "/login"
+
+
+}), 
+
+	function(req, resp){
+
+	resp.send("logic happens here");
+})
+
+
+
+//LOGOUT ROUTE
+app.get("/logout", function(req, resp){
+
+	req.logout();
+	resp.redirect("/campgrounds");
+
+})
+
+
+//Middleware to make sure that only logged in users could add comments
+function isLoggedIn(req, resp, next){
+	if(req.isAuthenticated()){
+		return next();
+	}
+	resp.redirect("/login");
+
+}
+
+
+
 
 
 
