@@ -1,3 +1,4 @@
+require('dotenv').config();
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
@@ -23,7 +24,7 @@ var commentRoutes    = require("./routes/comments"),
 //mongoose.connect("mongodb://localhost/yelp_camp", {useFindAndModify: false});
 mongoose.connect("mongodb+srv://jorgev:chargers@cluster0-aahrx.mongodb.net/test?retryWrites=true&w=majority", {useFindAndModify: false, useNewUrlParser: true});
 app.set("view engine", "ejs");
-app.use('/static', express.static(path.join(__dirname, 'public')))
+//app.use('/static', express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 

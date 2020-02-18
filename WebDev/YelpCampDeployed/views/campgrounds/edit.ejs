@@ -8,6 +8,11 @@
 			<input class="form-control" type="text" name="campground[name]" value="<%= campground.name %>">
 			<input class="form-control" type="text" name="campground[image]"  value="<%= campground.image %>">
 			<input class="form-control" type="text" name="campground[description]"  value="<%= campground.description %>">
+		
+			<div class="form-group">
+				<label for="location">Location</label>
+				<input class="form-control" type="text" name="location" id="location" value="<%= campground.location %>">
+			</div>
 			<button class="btn btn-lg btn-primary btn-block">Submit</button>
 		</form>
 		<a href="/campgrounds">Go Back</a>

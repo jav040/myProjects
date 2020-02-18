@@ -7,7 +7,7 @@ var Comment = require("../models/comment");
 
 
 
-
+//TAKE USER TO THE "ADD NEW COMMENT" FORM, TO CREATE A COMMENT
 /*----------   COMMENT  	-------	*/
 router.get("/new", isLoggedIn ,function(req, resp){
 						//Find campground by ID
@@ -19,7 +19,7 @@ router.get("/new", isLoggedIn ,function(req, resp){
 					   );	
 })
 
-// CREATE A NEW COMMENT
+// CREATE A NEW COMMENT, I.E. SAVE TO DATABASE
 
 router.post("/", isLoggedIn, function(req, resp){
 	//lookup campground by ID
@@ -60,14 +60,92 @@ router.post("/", isLoggedIn, function(req, resp){
 
 
 
+/* RENDER THE "EDIT COMMENT" FORM */
+router.get("/:comment_id/edit", checkCommentOwnership, function(req, resp){
+
+	Comment.findById(req.params.comment_id, function(err, foundComment){
+	
+	if(err){
+		resp.redirect("back");
+	}
+	else{
+		resp.render("comments/edit", {campground_id: req.params.id, comment: foundComment});
+	}
+	
+        });
+
+})
+
+
+
+/* COMMENTS UPDATE (RETURN TO THE CAMPGROUND, WITH AN UPDATED COMMENT) */
+router.put("/:comment_id", checkCommentOwnership, function(req, resp){
+
+	Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, updatedComment){
+		if(err){
+			resp.redirect("back");
+		}
+		else{
+			resp.redirect("/campgrounds/" + req.params.id);
+		}
+
+	})
+
+})
+
+
+//COMMENTS DESTROY ROUTE
+router.delete("/:comment_id", checkCommentOwnership, function(req, resp){
+	
+
+
+	Comment.findByIdAndRemove(req.params.comment_id, function(err){
+		if(err){
+			resp.redirect("back");
+		}
+		else{
+			resp.redirect("/campgrounds/" + req.params.id);
+		}
+	
+	})
+
+});
+
+
+
 //Middleware to make sure that only logged in users could add comments
 function isLoggedIn(req, resp, next){
 	if(req.isAuthenticated()){
 		return next();
 	}
 	resp.redirect("/login");
-
 }
+
+
+
+
+function checkCommentOwnership(req, resp, next){
+if(req.isAuthenticated()){
+  Comment.findById(req.params.comment_id, function(err, foundComment){
+    if(err){
+	res.redirect("back")
+     }
+    else{
+	//Does user own comment
+      if(foundComment.author.id.equals(req.user._id)){			      
+		next();
+      }
+      else{
+        resp.redirect("back");
+      }
+     }
+  });
+	} 
+else {
+		resp.redirect("back");
+	}
+}
+
 
 
 
