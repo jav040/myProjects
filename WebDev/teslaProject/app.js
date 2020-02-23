@@ -65,7 +65,7 @@ app.get("/", function(req, resp){
 	    
 	    var vehicleID = parsedBody.response[0].id_s;
 	    console.log("the vehicle_id is: " + vehicleID);
-	    resp.render('index', {hi: accessToken} );
+	   // resp.render('index', {hi: accessToken} );
 	      
 	    console.log("the type of vehicleID specifically is: " + typeof(vehicleID));
 
@@ -78,8 +78,7 @@ app.get("/", function(req, resp){
 		
 			/*	Get Vehicle Data	*/
 
-			request({
-					
+			request({					
 				method: 'GET',
 				url: 'https://owner-api.teslamotors.com/api/1/vehicles/' + vehicleIDString + '/vehicle_data',
             			headers: { "Authorization": "Bearer " + accessToken, "Content-Type": "application/json; charset=utf-8" } 
@@ -88,7 +87,13 @@ app.get("/", function(req, resp){
 				function(err, res, body){    
 				console.log('REQUEST RESULTS:', err, res.statusCode, body);	
 				console.log("the last status code is: " + res.statusCode);
-				console.trace();
+			//	console.trace();
+				console.log(body);
+				parsedBodyVehicle = JSON.parse(body);
+				console.log("milesLeft: " + parsedBodyVehicle.response.charge_state.battery_range);
+				//Get the differenrt variables
+				
+	    			resp.render('index', {data1: parsedBodyVehicle.response.charge_state.battery_range, data2: parsedBodyVehicle.response.climate_state.inside_temp, data3: parsedBodyVehicle.response.charge_state.battery_level, data4: parsedBodyVehicle.response.charge_state.ideal_battery_range} );
 
 			});
 
