@@ -1,9 +1,12 @@
 const express = require("express");
 const app = express();
 const port = 3000
+var path = require("path");
+
+
 var bodyParser = require("body-parser");
 
-
+app.use(express.static(path.join(__dirname, '/public')));
 
 app.set("view engine", "ejs");
 
@@ -44,21 +47,56 @@ app.get("/", function(req, resp){
      
      
      
-        /* GET THE VEHICLE ID NUMBER */
-        request({
-        url: 'https://owner-api.teslamotors.com/api/1/vehicles',
-        method: 'GET',
-        headers: { "Authorization": "Bearer " + accessToken, "Content-Type": "application/json; charset=utf-8" } 
-       
-       }, function(err, res, body) {
-        console.log("about to print the access token for ID get call: " + accessToken);
-        console.log("about to print the response status code(2):");
-        console.log(res.statusCode);
-        console.log("About to print the body(2):");
-        console.log(body);
-     
-        resp.render('index', {hi: accessToken} );
-  
+            /* GET THE VEHICLE ID NUMBER */
+            request({
+            url: 'https://owner-api.teslamotors.com/api/1/vehicles',
+            method: 'GET',
+            headers: { "Authorization": "Bearer " + accessToken, "Content-Type": "application/json; charset=utf-8" } 
+           
+           }, function(err, res, body) {
+            console.log("about to print the access token for ID get call: " + accessToken);
+            console.log("about to print the response status code(2):");
+            console.log(res.statusCode);
+            console.log("About to print the body(2):");
+            console.log(body);
+	    console.log(typeof(body));
+            parsedBody = JSON.parse(body);
+	    console.log("now the type of parsedBody is: " + typeof(parsedBody));
+	    var vehicleID = parsedBody.response[0].id;
+	    console.log("the vehicle_id is: " + vehicleID);
+	    resp.render('index', {hi: accessToken} );
+	      
+	    console.log("the type of vehicleID specifically is: " + typeof(vehicleID));
+
+	    var vehicleIDString = vehicleID.toString();
+	    console.log("This should be a string right? " + typeof(vehicleIDString) );
+	    var finalURL = 'https://owner-api.teslamotors.com/api/1/vehicles/' + vehicleIDString + '/vehicle_data';
+	    console.log("final url is: " + finalURL);
+	    console.log("For a sanity check, the access token is: " + accessToken);
+	    console.log("the type of the final URL is: " + typeof(finalURL));	
+		
+			/*	Get Vehicle Data	*/
+			request({
+					
+				method: 'GET',
+				url: 'https://owner-api.teslamotors.com/api/1/vehicles/' + vehicleIDString + '/vehicle_data',
+            			headers: { "Authorization": "Bearer " + accessToken, "Content-Type": "application/json; charset=utf-8" } 
+
+			}, 
+				function(err, res, body){    
+					
+				console.log("the last status code is: " + res.statusCode);
+				console.trace();
+
+			});
+
+			
+
+
+
+	
+
+
 
    
      
