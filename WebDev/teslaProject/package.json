@@ -13,6 +13,8 @@
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "json": "^9.0.6",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "request-debug": "^0.2.0",
+    "request-promise": "^4.2.5"
   }
 }
