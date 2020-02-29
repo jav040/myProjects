@@ -10,10 +10,13 @@ var path = require('path');
 var LocalStrategy = require("passport-local");
 var User = require("./models/user");
 var passport = require("passport");
-
+var mongoURL = "mongodb+srv://jorgev:chargers@cluster0-aahrx.mongodb.net/test?retryWrites=true&w=majority"
 seedDB();
 
-mongoose.connect("mongodb://localhost/yelp_camp");
+try{
+mongoose.connect(mongoURL, {useMongoClient: true, useFindAndModify: false, useNewUrlParser: true});
+} catch(e) {console.log(e.message) }
+
 app.set("view engine", "ejs");
 app.use('/static', express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({extended: true}));
